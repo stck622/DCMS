@@ -7,8 +7,8 @@ import java.net.Socket;
 
 public class DCMS_CLIENT extends Thread { // 포트 8000
    int getnum(byte data[],int num){
-        return  Integer.parseInt(new String(data,num,1));
-    }
+            return  Integer.parseInt(new String(data,num,1));
+   }
     @Override
 
     public void run() {
@@ -25,7 +25,7 @@ public class DCMS_CLIENT extends Thread { // 포트 8000
                  if (data[0] == '1') {
                     DATA.wm[getnum(data,1)-1][getnum(data,2)-1] = getnum(data,3);
                     System.out.println(DATA.wm[getnum(data,1)-1][getnum(data,2)-1]);
-                }else{
+                }else if (data[0]=='2'){
                      DATA.sh[getnum(data,1)-1][getnum(data,2)-1] = getnum(data,3);
                      System.out.println(DATA.sh[getnum(data,1)-1][getnum(data,2)-1]);
                  }
