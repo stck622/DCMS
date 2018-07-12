@@ -18,6 +18,10 @@
         <Image url="@logo.png"/>
     </ImageView>
 
+    <ImageView opacity="0.5" scaleY="10" scaleX="100">
+        <Image url="@mask.png"/>
+    </ImageView>
+
     <ImageView scaleX="0.4" scaleY="0.4" translateX="780" translateY="350">
         <Image url="@actionbar.png"/>
     </ImageView>
