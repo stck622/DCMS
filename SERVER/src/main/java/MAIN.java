@@ -4,5 +4,7 @@ public class MAIN {
         dcms_client.start();
         DCMS_USER dcms_user = new DCMS_USER();
         dcms_user.start();
+        DCMS_ADMIN dcms_admin = new DCMS_ADMIN();
+        dcms_admin.start();
     }
 }

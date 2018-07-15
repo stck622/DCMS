@@ -22,13 +22,10 @@ public class DCMS_CLIENT extends Thread { // 포트 8000
 
                 byte data[] = new byte[10];
                 input1.read(data);                                 //값 입력받기
-                 if (data[0] == '1') {
+                 if (data[0] == '1')
                     DATA.wm[getnum(data,1)-1][getnum(data,2)-1] = getnum(data,3);
-                    System.out.println(DATA.wm[getnum(data,1)-1][getnum(data,2)-1]);
-                }else if (data[0]=='2'){
+                 else if (data[0]=='2')
                      DATA.sh[getnum(data,1)-1][getnum(data,2)-1] = getnum(data,3);
-                     System.out.println(DATA.sh[getnum(data,1)-1][getnum(data,2)-1]);
-                 }
             }
         } catch (IOException e) {
         }
