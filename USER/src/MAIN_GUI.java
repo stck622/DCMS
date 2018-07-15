@@ -10,7 +10,7 @@ public class MAIN_GUI extends JFrame {
         /*전체 화면*/
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         GraphicsDevice gd = ge.getDefaultScreenDevice();
-        //setUndecorated(true);
+        setUndecorated(true);
         //gd.setFullScreenWindow(this);
 
 
@@ -60,7 +60,7 @@ public class MAIN_GUI extends JFrame {
 
 
         /*메뉴 버튼*/
-        menu_open_button.setLocation(840 - 200, 480 - 190);
+        menu_open_button.setLocation(640, 330);
         menu_open_button.setSize(100, 100);
         menu_open_button.setBorderPainted(false);
         menu_open_button.setContentAreaFilled(false);
@@ -79,7 +79,7 @@ public class MAIN_GUI extends JFrame {
         });
 
         /*메뉴 닫기*/
-        menu_cancel_button.setLocation(840 - 85, 480 - 70);
+        menu_cancel_button.setLocation(755, 450);
         menu_cancel_button.setSize(30, 30);
         menu_cancel_button.setVisible(false);
         menu_cancel_button.setBorderPainted(false);
@@ -97,42 +97,42 @@ public class MAIN_GUI extends JFrame {
             menu_use_button.setVisible(false);
         });
 
-        menu_notice_button.setLocation(320, 25); //840 * 480
+        menu_notice_button.setLocation(320, 15); //840 * 480
         menu_notice_button.setSize(180, 180);
         menu_notice_button.setVisible(false);
         menu_notice_button.setBorderPainted(false);
         menu_notice_button.setContentAreaFilled(false);
         menu_notice_button.setFocusPainted(false);
 
-        menu_date_button.setLocation(320, 252);
+        menu_date_button.setLocation(320, 262);
         menu_date_button.setSize(180, 180);
         menu_date_button.setVisible(false);
         menu_date_button.setBorderPainted(false);
         menu_date_button.setContentAreaFilled(false);
         menu_date_button.setFocusPainted(false);
 
-        menu_food_button.setLocation(30, 263);
+        menu_food_button.setLocation(30, 273);
         menu_food_button.setSize(180, 180);
         menu_food_button.setVisible(false);
         menu_food_button.setBorderPainted(false);
         menu_food_button.setContentAreaFilled(false);
         menu_food_button.setFocusPainted(false);
 
-        menu_RP_button.setLocation(600, 252);
+        menu_RP_button.setLocation(600, 262);
         menu_RP_button.setSize(180, 180);
         menu_RP_button.setVisible(false);
         menu_RP_button.setBorderPainted(false);
         menu_RP_button.setContentAreaFilled(false);
         menu_RP_button.setFocusPainted(false);
 
-        menu_use_button.setLocation(30, 27);
+        menu_use_button.setLocation(30, 17);
         menu_use_button.setSize(180, 180);
         menu_use_button.setVisible(false);
         menu_use_button.setBorderPainted(false);
         menu_use_button.setContentAreaFilled(false);
         menu_use_button.setFocusPainted(false);
 
-        menu_rule_button.setLocation(600, 27);
+        menu_rule_button.setLocation(600, 17);
         menu_rule_button.setSize(180, 180);
         menu_rule_button.setVisible(false);
         menu_rule_button.setBorderPainted(false);
