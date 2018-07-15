@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/DCMS.iml" filepath="$PROJECT_DIR$/DCMS.iml" />
+      <module fileurl="file://$PROJECT_DIR$/USER.iml" filepath="$PROJECT_DIR$/USER.iml" />
     </modules>
   </component>
 </project>
