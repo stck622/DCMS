@@ -23,17 +23,17 @@ public class MAIN_GUI extends JFrame {
 
         JLabel mask =  new JLabel();
         JLabel clock_text = new JLabel("PM 12:00");
-        JLabel background_image = new JLabel((ImageIcon) Add_image("C:\\Users\\stck6\\Documents\\DCMS\\USER\\src\\Media\\background.jpg", 840, 480));
-        JButton menu_cancel_button = new JButton(((ImageIcon) Add_image("C:\\Users\\stck6\\Documents\\DCMS\\USER\\src\\Media\\cacel.png", 30, 30)));
-        JButton menu_open_button = new JButton(((ImageIcon) Add_image("C:\\Users\\stck6\\Documents\\DCMS\\USER\\src\\Media\\menu.png", 100, 100)));
+        JLabel background_image = new JLabel((ImageIcon) Add_image("C:\\Users\\Jin\\Documents\\DCMS\\USER\\src\\Media\\background.jpg", 840, 480));
+        JButton menu_cancel_button = new JButton(((ImageIcon) Add_image("C:\\Users\\Jin\\Documents\\DCMS\\USER\\src\\Media\\cacel.png", 30, 30)));
+        JButton menu_open_button = new JButton(((ImageIcon) Add_image("C:\\Users\\Jin\\Documents\\DCMS\\USER\\src\\Media\\menu.png", 100, 100)));
 
 
-        JButton menu_notice_button = new JButton(((ImageIcon) Add_image("C:\\Users\\stck6\\Documents\\DCMS\\USER\\src\\Media\\notice.png", 100, 100)));
-        JButton menu_date_button = new JButton(((ImageIcon) Add_image("C:\\Users\\stck6\\Documents\\DCMS\\USER\\src\\Media\\date.png", 100, 100)));
-        JButton menu_food_button = new JButton(((ImageIcon) Add_image("C:\\Users\\stck6\\Documents\\DCMS\\USER\\src\\Media\\food.png", 100, 100)));
-        JButton menu_RP_button = new JButton(((ImageIcon) Add_image("C:\\Users\\stck6\\Documents\\DCMS\\USER\\src\\Media\\RP.png", 100, 100)));
-        JButton menu_rule_button = new JButton(((ImageIcon) Add_image("C:\\Users\\stck6\\Documents\\DCMS\\USER\\src\\Media\\rule.png", 100, 100)));
-        JButton menu_use_button = new JButton(((ImageIcon) Add_image("C:\\Users\\stck6\\Documents\\DCMS\\USER\\src\\Media\\shower.png", 100, 100)));
+        JButton menu_notice_button = new JButton(((ImageIcon) Add_image("C:\\Users\\Jin\\Documents\\DCMS\\USER\\src\\Media\\notice.png", 180, 180)));
+        JButton menu_date_button = new JButton(((ImageIcon) Add_image("C:\\Users\\Jin\\Documents\\DCMS\\USER\\src\\Media\\date.png", 180, 180)));
+        JButton menu_food_button = new JButton(((ImageIcon) Add_image("C:\\Users\\Jin\\Documents\\DCMS\\USER\\src\\Media\\food.png", 180, 180)));
+        JButton menu_RP_button = new JButton(((ImageIcon) Add_image("C:\\Users\\Jin\\Documents\\DCMS\\USER\\src\\Media\\RP.png", 180, 180)));
+        JButton menu_rule_button = new JButton(((ImageIcon) Add_image("C:\\Users\\Jin\\Documents\\DCMS\\USER\\src\\Media\\rule.png", 180, 180)));
+        JButton menu_use_button = new JButton(((ImageIcon) Add_image("C:\\Users\\Jin\\Documents\\DCMS\\USER\\src\\Media\\shower.png", 180, 180)));
 
 
         /*백그라운드 이미지*/
@@ -50,10 +50,10 @@ public class MAIN_GUI extends JFrame {
 
 
         /*시간 텍스트*/
-        clock_text.setLocation(840 / 2 - 105, 480 / 2 - 75);
-        clock_text.setSize(1000, 100);
+        clock_text.setLocation(160, -30);
+        clock_text.setSize(1000, 500);
         clock_text.setForeground(Color.white);
-        clock_text.setFont(clock_text.getFont().deriveFont(Font.BOLD, 30f));
+        clock_text.setFont(clock_text.getFont().deriveFont(Font.BOLD, 90f));
         /*스레드 실행*/
         clock_thread clock_thread = new clock_thread(clock_text);
         clock_thread.start();
@@ -72,7 +72,6 @@ public class MAIN_GUI extends JFrame {
             menu_notice_button.setVisible(true);
             menu_date_button.setVisible(true);
             menu_food_button.setVisible(true);
-            menu_open_button.setVisible(true);
             menu_RP_button.setVisible(true);
             menu_rule_button.setVisible(true);
             menu_use_button.setVisible(true);
@@ -93,49 +92,48 @@ public class MAIN_GUI extends JFrame {
             menu_notice_button.setVisible(false);
             menu_date_button.setVisible(false);
             menu_food_button.setVisible(false);
-            menu_open_button.setVisible(false);
             menu_RP_button.setVisible(false);
             menu_rule_button.setVisible(false);
             menu_use_button.setVisible(false);
         });
 
-        menu_notice_button.setLocation(0, 0); //840 * 480
-        menu_notice_button.setSize(840, 480);
+        menu_notice_button.setLocation(320, 25); //840 * 480
+        menu_notice_button.setSize(180, 180);
         menu_notice_button.setVisible(false);
         menu_notice_button.setBorderPainted(false);
         menu_notice_button.setContentAreaFilled(false);
         menu_notice_button.setFocusPainted(false);
 
-        menu_date_button.setLocation(0, 0);
-        menu_date_button.setSize(840, 480);
+        menu_date_button.setLocation(320, 252);
+        menu_date_button.setSize(180, 180);
         menu_date_button.setVisible(false);
         menu_date_button.setBorderPainted(false);
         menu_date_button.setContentAreaFilled(false);
         menu_date_button.setFocusPainted(false);
 
-        menu_food_button.setLocation(0, 0);
-        menu_food_button.setSize(840, 480);
+        menu_food_button.setLocation(30, 263);
+        menu_food_button.setSize(180, 180);
         menu_food_button.setVisible(false);
         menu_food_button.setBorderPainted(false);
         menu_food_button.setContentAreaFilled(false);
         menu_food_button.setFocusPainted(false);
 
-        menu_RP_button.setLocation(0, 0);
-        menu_RP_button.setSize(840, 480);
+        menu_RP_button.setLocation(600, 252);
+        menu_RP_button.setSize(180, 180);
         menu_RP_button.setVisible(false);
         menu_RP_button.setBorderPainted(false);
         menu_RP_button.setContentAreaFilled(false);
         menu_RP_button.setFocusPainted(false);
 
-        menu_use_button.setLocation(0, 0);
-        menu_use_button.setSize(840, 480);
+        menu_use_button.setLocation(30, 27);
+        menu_use_button.setSize(180, 180);
         menu_use_button.setVisible(false);
         menu_use_button.setBorderPainted(false);
         menu_use_button.setContentAreaFilled(false);
         menu_use_button.setFocusPainted(false);
 
-        menu_rule_button.setLocation(0, 0);
-        menu_rule_button.setSize(840, 480);
+        menu_rule_button.setLocation(600, 27);
+        menu_rule_button.setSize(180, 180);
         menu_rule_button.setVisible(false);
         menu_rule_button.setBorderPainted(false);
         menu_rule_button.setContentAreaFilled(false);
@@ -151,6 +149,7 @@ public class MAIN_GUI extends JFrame {
         container.add(menu_open_button);
         container.add(menu_RP_button);
         container.add(menu_use_button);
+        container.add(menu_rule_button);
 
 
         container.add(mask);
