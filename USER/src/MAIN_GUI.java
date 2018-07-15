@@ -21,19 +21,18 @@ public class MAIN_GUI extends JFrame {
         setDefaultCloseOperation(3);
         setVisible(true);
 
+        String user = "stck6";
         JLabel mask =  new JLabel();
         JLabel clock_text = new JLabel("PM 12:00");
-        JLabel background_image = new JLabel((ImageIcon) Add_image("C:\\Users\\Jin\\Documents\\DCMS\\USER\\src\\Media\\background.jpg", 840, 480));
-        JButton menu_cancel_button = new JButton(((ImageIcon) Add_image("C:\\Users\\Jin\\Documents\\DCMS\\USER\\src\\Media\\cacel.png", 30, 30)));
-        JButton menu_open_button = new JButton(((ImageIcon) Add_image("C:\\Users\\Jin\\Documents\\DCMS\\USER\\src\\Media\\menu.png", 100, 100)));
-
-
-        JButton menu_notice_button = new JButton(((ImageIcon) Add_image("C:\\Users\\Jin\\Documents\\DCMS\\USER\\src\\Media\\notice.png", 180, 180)));
-        JButton menu_date_button = new JButton(((ImageIcon) Add_image("C:\\Users\\Jin\\Documents\\DCMS\\USER\\src\\Media\\date.png", 180, 180)));
-        JButton menu_food_button = new JButton(((ImageIcon) Add_image("C:\\Users\\Jin\\Documents\\DCMS\\USER\\src\\Media\\food.png", 180, 180)));
-        JButton menu_RP_button = new JButton(((ImageIcon) Add_image("C:\\Users\\Jin\\Documents\\DCMS\\USER\\src\\Media\\RP.png", 180, 180)));
-        JButton menu_rule_button = new JButton(((ImageIcon) Add_image("C:\\Users\\Jin\\Documents\\DCMS\\USER\\src\\Media\\rule.png", 180, 180)));
-        JButton menu_use_button = new JButton(((ImageIcon) Add_image("C:\\Users\\Jin\\Documents\\DCMS\\USER\\src\\Media\\shower.png", 180, 180)));
+        JLabel background_image = new JLabel((ImageIcon) Add_image("C:\\Users\\"+user+"\\Documents\\DCMS\\USER\\src\\Media\\background.jpg", 840, 480));
+        JButton menu_cancel_button = new JButton(((ImageIcon) Add_image("C:\\Users\\"+user+"\\Documents\\DCMS\\USER\\src\\Media\\cacel.png", 30, 30)));
+        JButton menu_open_button = new JButton(((ImageIcon) Add_image("C:\\Users\\"+user+"\\Documents\\DCMS\\USER\\src\\Media\\menu.png", 100, 100)));
+        JButton menu_notice_button = new JButton(((ImageIcon) Add_image("C:\\Users\\"+user+"\\Documents\\DCMS\\USER\\src\\Media\\notice.png", 180, 180)));
+        JButton menu_date_button = new JButton(((ImageIcon) Add_image("C:\\Users\\"+user+"\\Documents\\DCMS\\USER\\src\\Media\\date.png", 180, 180)));
+        JButton menu_food_button = new JButton(((ImageIcon) Add_image("C:\\Users\\"+user+"\\Documents\\DCMS\\USER\\src\\Media\\food.png", 180, 180)));
+        JButton menu_RP_button = new JButton(((ImageIcon) Add_image("C:\\Users\\"+user+"\\Documents\\DCMS\\USER\\src\\Media\\RP.png", 180, 180)));
+        JButton menu_rule_button = new JButton(((ImageIcon) Add_image("C:\\Users\\"+user+"\\Documents\\DCMS\\USER\\src\\Media\\rule.png", 180, 180)));
+        JButton menu_use_button = new JButton(((ImageIcon) Add_image("C:\\Users\\"+user+"\\Documents\\DCMS\\USER\\src\\Media\\shower.png", 180, 180)));
 
 
         /*백그라운드 이미지*/
@@ -79,7 +78,7 @@ public class MAIN_GUI extends JFrame {
         });
 
         /*메뉴 닫기*/
-        menu_cancel_button.setLocation(755, 450);
+        menu_cancel_button.setLocation(769, 450);
         menu_cancel_button.setSize(30, 30);
         menu_cancel_button.setVisible(false);
         menu_cancel_button.setBorderPainted(false);
