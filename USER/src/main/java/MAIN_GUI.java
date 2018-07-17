@@ -1,6 +1,6 @@
-import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
+import java.sql.*;
 
 
 public class MAIN_GUI extends JFrame {
@@ -30,7 +31,14 @@ public class MAIN_GUI extends JFrame {
     JLabel food_lunch;
     JLabel food_dinner;
     JButton menu_RP_button;
+    JLabel RP_number;
+    JLabel RP_result;
+    JButton RP_enter;
+    JButton RP_del;
+    JButton numpad[] = new JButton[10];
     JButton menu_rule_button;
+    JLabel rule_txt;
+    JScrollPane rule_scroll;
     JButton menu_use_button;
     JButton use_shower;
     JLabel shower_image1;
@@ -58,8 +66,8 @@ public class MAIN_GUI extends JFrame {
         /*전체 화면*/
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         GraphicsDevice gd = ge.getDefaultScreenDevice();
-        //setUndecorated(true);
-        //gd.setFullScreenWindow(this);
+        setUndecorated(true);
+        gd.setFullScreenWindow(this);
 
 
         /*컨테이너 기본 설정*/
@@ -86,18 +94,26 @@ public class MAIN_GUI extends JFrame {
         food_lunch = new JLabel("null");
         food_dinner = new JLabel("null");
         menu_RP_button = new JButton(((ImageIcon) Add_image(path + "RP_button.png", 180, 180)));
+        RP_number = new JLabel("");
+        RP_del = new JButton("<--");
+        RP_enter = new JButton("조회");
+        RP_result = new JLabel("조회를 해주세요!");
+        for(int i = 0; i < 10; i ++)
+            numpad[i] = new JButton(String.valueOf(i));
         menu_rule_button = new JButton(((ImageIcon) Add_image(path + "rule_button.png", 180, 180)));
         menu_use_button = new JButton(((ImageIcon) Add_image(path + "use_button.png", 180, 180)));
+        rule_txt = new JLabel();
+        rule_scroll = new JScrollPane(rule_txt);
         use_shower = new JButton(((ImageIcon) Add_image(path + "use_shower.png", 180, 180)));
         shower_image1 = new JLabel(((ImageIcon) Add_image(path + "shower_image.png", 180, 180)));
         shower_image2 = new JLabel(((ImageIcon) Add_image(path + "shower_image.png", 180, 180)));
         shower_1 = new JLabel("null");
         shower_2 = new JLabel("null");
         use_wm = new JButton(((ImageIcon) Add_image(path + "use_wm.png", 180, 180)));
-        wm_image1  = new JLabel(((ImageIcon) Add_image(path + "wm_image.png", 180, 180)));
-        wm_image2  = new JLabel(((ImageIcon) Add_image(path + "wm_image.png", 180, 180)));
-        wm_image3  = new JLabel(((ImageIcon) Add_image(path + "wm_image.png", 180, 180)));
-        wm_image4  = new JLabel(((ImageIcon) Add_image(path + "wm_image.png", 180, 180)));
+        wm_image1 = new JLabel(((ImageIcon) Add_image(path + "wm_image.png", 180, 180)));
+        wm_image2 = new JLabel(((ImageIcon) Add_image(path + "wm_image.png", 180, 180)));
+        wm_image3 = new JLabel(((ImageIcon) Add_image(path + "wm_image.png", 180, 180)));
+        wm_image4 = new JLabel(((ImageIcon) Add_image(path + "wm_image.png", 180, 180)));
         wm_1 = new JLabel("null");
         wm_2 = new JLabel("null");
         wm_3 = new JLabel("null");
@@ -216,8 +232,8 @@ public class MAIN_GUI extends JFrame {
                             inputStream.read(data);
 
                             if (menu_info == 2) {
-                                shower_1.setText(new String(data).substring(0, 1)+"명 사용중");
-                                shower_2.setText(new String(data).substring(1, 2)+"명 사용중");
+                                shower_1.setText(new String(data).substring(0, 1) + "명 사용중");
+                                shower_2.setText(new String(data).substring(1, 2) + "명 사용중");
                             }
 
                             if (new String(data).substring(0, 1).equals("0") && menu_info == 1) {
@@ -386,15 +402,58 @@ public class MAIN_GUI extends JFrame {
             food_morning.setVisible(true);
             food_lunch.setVisible(true);
             food_dinner.setVisible(true);
-            try {
-                Connection.Response response = Jsoup.connect("http://www.google.com")
-                        .method(Connection.Method.GET)
-                        .execute();
-                Document document = response.parse();
+            new Thread() {
+                @Override
+                public void run() {
+                    super.run();
+                    try {
+                        Document doc = Jsoup.connect("http://www.dgsw.hs.kr/user/carte/list.do?menuCd=").get();
 
-                String html = document.html();
-                System.out.println(html);
-            }catch (IOException e1){e1.printStackTrace();}
+                        Elements el = doc.select("div.meals_today_top");
+
+                        String html = el.toString();
+
+                        html = html.substring(html.indexOf("<ul class=\"meals_today_list\">"), html.length());
+
+                        String morning = html.substring(html.indexOf("alt=\"조식\">") + 10, html.indexOf("</li>"));
+                        html = html.substring(html.indexOf("</li>") + 5, html.length());
+
+                        morning = morning.replaceAll("[.]", "");
+                        morning = morning.replaceAll("[0-9]", "");
+                        morning = morning.trim().replaceAll("  ", "<br>");
+
+                        System.out.println(morning);
+                        System.out.println();
+
+                        String lunch = html.substring(html.indexOf("alt=\"중식\">") + 10, html.indexOf("</li>"));
+                        html = html.substring(html.indexOf("</li>") + 5, html.length());
+
+                        lunch = lunch.replaceAll("[.]", "");
+                        lunch = lunch.replaceAll("[0-9]", "");
+                        lunch = lunch.trim().replaceAll("  ", "<br>");
+
+                        System.out.println(lunch);
+                        System.out.println();
+
+                        String dinner = html.substring(html.indexOf("alt=\"석식\">") + 10, html.indexOf("</li>"));
+                        html = html.substring(html.indexOf("</li>") + 5, html.length());
+
+                        dinner = dinner.replaceAll("[.]", "");
+                        dinner = dinner.replaceAll("[0-9]", "");
+                        dinner = dinner.replaceAll("  ", "<br>");
+                        dinner = dinner.trim().replaceAll("ㆍ", "");
+
+                        System.out.println(dinner);
+                        System.out.println();
+
+                        food_morning.setText("<html>" + morning + "</html>");
+                        food_lunch.setText("<html>" + lunch + "</html>");
+                        food_dinner.setText("<html>" + dinner + "</html>");
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            }.start();
         });
 
         food_morning.setLocation(50, 0);
@@ -423,6 +482,125 @@ public class MAIN_GUI extends JFrame {
         menu_RP_button.setBorderPainted(false);
         menu_RP_button.setContentAreaFilled(false);
         menu_RP_button.setFocusPainted(false);
+        menu_RP_button.addActionListener(e -> {
+            Menu_unvisible();
+            for(int i = 0; i < 10; i ++)
+                numpad[i].setVisible(true);
+            RP_enter.setVisible(true);
+            RP_del.setVisible(true);
+            RP_result.setVisible(true);
+        });
+
+        RP_enter.setLocation(200,15);
+        RP_enter.setSize(100,100);
+        RP_enter.setVisible(false);
+        RP_enter.addActionListener(e -> {
+            new Thread(){
+                @Override
+                public void run() {
+                    Connection con = null;
+                    Statement sta = null;
+                    super.run();
+                    try{
+                        Class.forName("com.mysql.jdbc.Driver");
+                        con= DriverManager.getConnection("jdbc:mysql://10.80.162.66:3306/dcms_db?serverTimezone=UTC","test2","1234");
+                        sta = con.createStatement();
+                        PreparedStatement pstmt = con.prepareStatement("select * from topic where id = '1305';");
+                        ResultSet rs = pstmt.executeQuery();
+                        while(rs.next())
+                            RP_result.setText(rs.getString(4));
+                    }
+                    catch(SQLException ex){
+                        System.out.println("SQLException:"+ex);
+                    }
+                    catch(Exception ex){
+                        System.out.println("Exception:"+ex);
+                    }finally{
+                        try{
+                            //데이터베이스 Close 해주기
+                            if ( con != null){ con.close(); }
+                        }catch(Exception e){}
+                    }
+                }
+            }.start();
+        });
+
+        RP_del.setLocation(300,15);
+        RP_del.setSize(100,100);
+        RP_del.setVisible(false);
+        RP_del.addActionListener(e -> {
+            RP_number.setText(RP_number.getText().substring(0,RP_number.getText().length()-1));
+        });
+
+        RP_number.setLocation(100, 15);
+        RP_number.setSize(180, 180);
+        RP_number.setVisible(false);
+
+        RP_result.setLocation(200,15);
+        RP_result.setSize(100,100);
+
+        numpad[0].setLocation(30, 17);
+        numpad[0].setSize(180, 180);
+        numpad[0].addActionListener(e -> {
+            RP_number.setText(RP_number.getText()+"0");
+        });
+
+        numpad[1].setLocation(30, 17);
+        numpad[1].setSize(180, 180);
+        numpad[1].addActionListener(e -> {
+            RP_number.setText(RP_number.getText()+"1");
+        });
+
+        numpad[2].setLocation(30, 17);
+        numpad[2].setSize(180, 180);
+        numpad[2].addActionListener(e -> {
+            RP_number.setText(RP_number.getText()+"2");
+        });
+
+        numpad[3].setLocation(30, 17);
+        numpad[3].setSize(180, 180);
+        numpad[3].addActionListener(e -> {
+            RP_number.setText(RP_number.getText()+"3");
+        });
+
+        numpad[4].setLocation(30, 17);
+        numpad[4].setSize(180, 180);
+        numpad[4].addActionListener(e -> {
+            RP_number.setText(RP_number.getText()+"4");
+        });
+
+        numpad[5].setLocation(30, 17);
+        numpad[5].setSize(180, 180);
+        numpad[5].addActionListener(e -> {
+            RP_number.setText(RP_number.getText()+"5");
+        });
+
+        numpad[6].setLocation(30, 17);
+        numpad[6].setSize(180, 180);
+        numpad[6].addActionListener(e -> {
+            RP_number.setText(RP_number.getText()+"6");
+        });
+
+        numpad[7].setLocation(30, 17);
+        numpad[7].setSize(180, 180);
+        numpad[7].addActionListener(e -> {
+            RP_number.setText(RP_number.getText()+"7");
+        });
+
+        numpad[8].setLocation(30, 17);
+        numpad[8].setSize(180, 180);
+        numpad[8].addActionListener(e -> {
+            RP_number.setText(RP_number.getText()+"8");
+        });
+
+        numpad[9].setLocation(30, 17);
+        numpad[9].setSize(180, 180);
+        numpad[9].addActionListener(e -> {
+            RP_number.setText(RP_number.getText()+"9");
+        });
+
+        for(int i = 0; i < 10; i++)
+            numpad[i].setVisible(false);
 
         /*사용현황 버튼*/
         menu_use_button.setLocation(30, 17);
@@ -473,8 +651,8 @@ public class MAIN_GUI extends JFrame {
                         outputStream.write((String.valueOf(menu_info) + (String.valueOf(i))).getBytes());
                         inputStream.read(data);
                         if (menu_info == 2) {
-                            shower_1.setText(new String(data).substring(0, 1)+"명 사용중");
-                            shower_2.setText(new String(data).substring(1, 2)+"명 사용중");
+                            shower_1.setText(new String(data).substring(0, 1) + "명 사용중");
+                            shower_2.setText(new String(data).substring(1, 2) + "명 사용중");
                         }
 
                         if (new String(data).substring(0, 1).equals("0") && menu_info == 1) {
@@ -537,7 +715,6 @@ public class MAIN_GUI extends JFrame {
         wm_image4.setVisible(false);
 
 
-
         use_shower.setLocation(200, 17);
         use_shower.setSize(180, 180);
         use_shower.setBorderPainted(false);
@@ -570,8 +747,8 @@ public class MAIN_GUI extends JFrame {
                         outputStream.write((String.valueOf(menu_info) + (String.valueOf(i))).getBytes());
                         inputStream.read(data);
                         if (menu_info == 2) {
-                            shower_1.setText(new String(data).substring(0, 1)+"명 사용중");
-                            shower_2.setText(new String(data).substring(1, 2)+"명 사용중");
+                            shower_1.setText(new String(data).substring(0, 1) + "명 사용중");
+                            shower_2.setText(new String(data).substring(1, 2) + "명 사용중");
                         }
 
                         if (new String(data).substring(0, 1).equals("0") && menu_info == 1) {
@@ -626,6 +803,29 @@ public class MAIN_GUI extends JFrame {
         menu_rule_button.setBorderPainted(false);
         menu_rule_button.setContentAreaFilled(false);
         menu_rule_button.setFocusPainted(false);
+        menu_rule_button.addActionListener(e -> {
+            Menu_unvisible();
+            rule_scroll.setVisible(true);
+            menu_text.setVisible(true);
+            menu_text.setText("기숙사 규정");
+            new Thread() {
+                @Override
+                public void run() {
+                    super.run();
+                    try {
+                        Document doc = Jsoup.connect("http://xn--ok0b85yy2iq1a.xn--h32bi4v.xn--3e0b707e/").get();
+                        rule_txt.setText(doc.getAllElements().toString());
+                    } catch (IOException e1) {
+                    }
+                }
+            }.start();
+        });
+
+        rule_scroll.setLocation(600, 17);
+        rule_scroll.setSize(180, 180);
+        rule_scroll.setVisible(false);
+        rule_scroll.setOpaque(true);
+        rule_txt.setOpaque(true);
 
 
         /*컨테이너에 등록*/
@@ -641,6 +841,9 @@ public class MAIN_GUI extends JFrame {
         container.add(food_dinner);
         container.add(menu_open_button);
         container.add(menu_RP_button);
+        container.add(RP_number);
+        for(int i = 0; i < 10; i ++)
+            container.add(numpad[i]);
         container.add(menu_use_button);
         container.add(use_shower);
         container.add(shower_image1);
@@ -657,6 +860,7 @@ public class MAIN_GUI extends JFrame {
         container.add(wm_image3);
         container.add(wm_image4);
         container.add(menu_rule_button);
+        container.add(rule_scroll);
         container.add(menu_text);
 
 
@@ -697,7 +901,14 @@ public class MAIN_GUI extends JFrame {
         food_dinner.setVisible(false);
         menu_text.setVisible(false);
         menu_RP_button.setVisible(false);
+        RP_result.setVisible(true);
+        RP_del.setVisible(true);
+        RP_enter.setVisible(true);
+        RP_number.setVisible(true);
+        for (int i = 0; i < 10; i ++)
+            numpad[i].setVisible(false);
         menu_rule_button.setVisible(false);
+        rule_scroll.setVisible(false);
         menu_use_button.setVisible(false);
         use_shower.setVisible(false);
         shower_image1.setVisible(false);
@@ -709,7 +920,10 @@ public class MAIN_GUI extends JFrame {
         wm_2.setVisible(false);
         wm_3.setVisible(false);
         wm_4.setVisible(false);
-
+        wm_image1.setVisible(false);
+        wm_image2.setVisible(false);
+        wm_image3.setVisible(false);
+        wm_image4.setVisible(false);
     }
 
     public Object Add_image(String image, int width, int height) { //이미지 등록 메소드 (경로, 폭, 높이)
