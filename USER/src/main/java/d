@@ -1,0 +1,47 @@
+ackage f;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+public class MAIN {
+    public static void main(String args[]){
+        Connection con = null;
+        Statement sta = null;
+         try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            System.out.println("드라이버 로드 완료");
+            //MySQL 서버를 설정합니다.
+            con=DriverManager.getConnection("jdbc:mysql://10.80.162.66:3306/dcms_db?serverTimezone=UTC","test2","1234");
+            System.out.println("데이터 베이스 접속이 성공했습니다.");
+            sta = con.createStatement();
+
+            //StringBuilder sb = new StringBuilder();
+            //String str1 = sb.append("update topic set Demerit = '1' where ID = 1201;")
+            		//.toString();
+
+            //sta.executeUpdate(str1);
+
+
+            		//Demerit
+            PreparedStatement pstmt = con.prepareStatement("select * from topic where id = '3105';");
+            ResultSet rs = pstmt.executeQuery();
+
+            while(rs.next())
+            	System.out.print(rs.getString(1) + " " + rs.getString(2) + " " + rs.getString(3) +" "+rs.getString(4)+"\n");
+        }
+        catch(SQLException  ex){
+            System.out.println("SQLException:"+ex);
+        }
+        catch(Exception ex){
+            System.out.println("Exception:"+ex);
+        }finally{
+            try{
+          //데이터베이스 Close 해주기
+                if ( con != null){ con.close(); }
+            }catch(Exception e){}
+        }
+     }
+}
