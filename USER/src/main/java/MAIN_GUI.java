@@ -78,7 +78,7 @@ public class MAIN_GUI extends JFrame {
         setVisible(true);
 
         String path = "/home/pi/Desktop/New/";
-        path = "C:\\Users\\user\\Documents\\DCMS\\USER\\src\\Media\\";
+        path = "C:\\Users\\Jin\\Documents\\DCMS\\USER\\src\\Media\\";
         mask = new JLabel();
         clock_text = new JLabel("PM 12:00");
         background_image = new JLabel((ImageIcon) Add_image(path + "background.jpg", 800, 480));
@@ -104,18 +104,19 @@ public class MAIN_GUI extends JFrame {
         menu_use_button = new JButton(((ImageIcon) Add_image(path + "use_button.png", 180, 180)));
         rule_txt = new JLabel();
         rule_scroll = new JScrollPane(rule_txt);
-        use_shower = new JButton(((ImageIcon) Add_image(path + "use_shower.png", 180, 180)));
-        shower_image1 = new JLabel(((ImageIcon) Add_image(path + "shower_image.png", 180, 180)));
-        shower_image2 = new JLabel(((ImageIcon) Add_image(path + "shower_image.png", 180, 180)));
+        use_shower = new JButton(((ImageIcon) Add_image(path + "use_shower.png", 300, 300)));
+        shower_image1 = new JLabel(((ImageIcon) Add_image(path + "shower_image.png", 250, 250)));
+        shower_image2 = new JLabel(((ImageIcon) Add_image(path + "shower_image.png", 250, 250)));
         shower_1 = new JLabel("null");
         shower_2 = new JLabel("null");
-        use_wm = new JButton(((ImageIcon) Add_image(path + "use_wm.png", 180, 180)));
-        wm_image1 = new JLabel(((ImageIcon) Add_image(path + "wm_image.png", 180, 180)));
-        wm_image2 = new JLabel(((ImageIcon) Add_image(path + "wm_image.png", 180, 180)));
-        wm_image3 = new JLabel(((ImageIcon) Add_image(path + "wm_image.png", 180, 180)));
-        wm_image4 = new JLabel(((ImageIcon) Add_image(path + "wm_image.png", 180, 180)));
+        use_wm = new JButton(((ImageIcon) Add_image(path + "use_wm.png", 300, 300)));
+        wm_image1 = new JLabel(((ImageIcon) Add_image(path + "wm_image.png", 120, 120)));
+        wm_image2 = new JLabel(((ImageIcon) Add_image(path + "wm_image.png", 120, 120)));
+        wm_image3 = new JLabel(((ImageIcon) Add_image(path + "wm_image.png", 120, 120)));
+        wm_image4 = new JLabel(((ImageIcon) Add_image(path + "wm_image.png", 120, 120)));
         wm_1 = new JLabel("null");
         wm_2 = new JLabel("null");
+
         wm_3 = new JLabel("null");
         wm_4 = new JLabel("null");
 
@@ -146,7 +147,7 @@ public class MAIN_GUI extends JFrame {
         clock_thread clock_thread = new clock_thread(clock_text);
         clock_thread.start();
 
-        up_button.setLocation(100, 200);
+        up_button.setLocation(360, 110);
         up_button.setSize(100, 100);
         up_button.setVisible(false);
         up_button.setBorderPainted(false);
@@ -201,14 +202,14 @@ public class MAIN_GUI extends JFrame {
             }
         });
 
-        floor.setLocation(100, -30);
+        floor.setLocation(380, 0);
         floor.setSize(1000, 500);
         floor.setForeground(Color.white);
         floor.setFont(clock_text.getFont().deriveFont(Font.BOLD, 90f));
         floor.setVisible(false);
 
 
-        down_button.setLocation(100, 100);
+        down_button.setLocation(360, 300);
         down_button.setSize(100, 100);
         down_button.setVisible(false);
         down_button.setBorderPainted(false);
@@ -302,7 +303,7 @@ public class MAIN_GUI extends JFrame {
         menu_text.setFont(menu_text.getFont().deriveFont(Font.BOLD, 50f));
 
         /*공지사항 버튼*/
-        menu_notice_button.setLocation(320, 15); //840 * 480
+        menu_notice_button.setLocation(320, 15);
         menu_notice_button.setSize(180, 180);
         menu_notice_button.setVisible(false);
         menu_notice_button.setBorderPainted(false);
@@ -365,17 +366,23 @@ public class MAIN_GUI extends JFrame {
             }.start();
         });
 
-        notice_1.setLocation(100, 15);
-        notice_1.setSize(180, 180);
+        notice_1.setLocation(10, 45);
+        notice_1.setSize(230, 180);
         notice_1.setVisible(false);
+        notice_1.setForeground(Color.white);
+        notice_1.setFont(notice_1.getFont().deriveFont(Font.BOLD, 30f));
 
-        notice_2.setLocation(200, 15);
-        notice_2.setSize(180, 180);
+        notice_2.setLocation(10, 155);
+        notice_2.setSize(230, 180);
         notice_2.setVisible(false);
+        notice_2.setForeground(Color.white);
+        notice_2.setFont(notice_2.getFont().deriveFont(Font.BOLD, 30f));
 
-        notice_3.setLocation(340, 15);
-        notice_3.setSize(180, 180);
+        notice_3.setLocation(10, 265);
+        notice_3.setSize(230, 180);
         notice_3.setVisible(false);
+        notice_3.setForeground(Color.white);
+        notice_3.setFont(notice_3.getFont().deriveFont(Font.BOLD, 30f));
 
 
 
@@ -456,19 +463,19 @@ public class MAIN_GUI extends JFrame {
             }.start();
         });
 
-        food_morning.setLocation(50, 0);
+        food_morning.setLocation(170, 0);
         food_morning.setSize(300, 500);
         food_morning.setForeground(Color.white);
         food_morning.setFont(food_morning.getFont().deriveFont(Font.BOLD, 15f));
         food_morning.setVisible(false);
 
-        food_lunch.setLocation(200, 0);
+        food_lunch.setLocation(370, 0);
         food_lunch.setSize(300, 500);
         food_lunch.setForeground(Color.white);
         food_lunch.setFont(food_lunch.getFont().deriveFont(Font.BOLD, 15f));
         food_lunch.setVisible(false);
 
-        food_dinner.setLocation(400, 0);
+        food_dinner.setLocation(570, 0);
         food_dinner.setSize(300, 500);
         food_dinner.setForeground(Color.white);
         food_dinner.setFont(food_dinner.getFont().deriveFont(Font.BOLD, 15f));
@@ -495,6 +502,7 @@ public class MAIN_GUI extends JFrame {
         RP_enter.setSize(100,100);
         RP_enter.setVisible(false);
         RP_enter.addActionListener(e -> {
+            menu_text.setText("벌점 조회");
             new Thread(){
                 @Override
                 public void run() {
@@ -539,62 +547,64 @@ public class MAIN_GUI extends JFrame {
         RP_result.setLocation(200,15);
         RP_result.setSize(100,100);
 
-        numpad[0].setLocation(30, 17);
-        numpad[0].setSize(180, 180);
-        numpad[0].addActionListener(e -> {
+        numpad[0].setLocation(550, 400);
+        numpad[0].setSize(150, 75);
+        numpad[0].addActionListener(e  -> {
             RP_number.setText(RP_number.getText()+"0");
         });
 
-        numpad[1].setLocation(30, 17);
-        numpad[1].setSize(180, 180);
+        numpad[1].setLocation(550, 325);
+        numpad[1].setSize(75, 75);
         numpad[1].addActionListener(e -> {
             RP_number.setText(RP_number.getText()+"1");
         });
 
-        numpad[2].setLocation(30, 17);
-        numpad[2].setSize(180, 180);
+        numpad[2].setLocation(625, 325);
+        numpad[2].setSize(75, 75);
+
+
         numpad[2].addActionListener(e -> {
             RP_number.setText(RP_number.getText()+"2");
         });
 
-        numpad[3].setLocation(30, 17);
-        numpad[3].setSize(180, 180);
+        numpad[3].setLocation(700, 325);
+        numpad[3].setSize(75, 75);
         numpad[3].addActionListener(e -> {
             RP_number.setText(RP_number.getText()+"3");
         });
 
-        numpad[4].setLocation(30, 17);
-        numpad[4].setSize(180, 180);
+        numpad[4].setLocation(550, 250);
+        numpad[4].setSize(75, 75);
         numpad[4].addActionListener(e -> {
             RP_number.setText(RP_number.getText()+"4");
         });
 
-        numpad[5].setLocation(30, 17);
-        numpad[5].setSize(180, 180);
+        numpad[5].setLocation(625, 250);
+        numpad[5].setSize(75, 75);
         numpad[5].addActionListener(e -> {
             RP_number.setText(RP_number.getText()+"5");
         });
 
-        numpad[6].setLocation(30, 17);
-        numpad[6].setSize(180, 180);
+        numpad[6].setLocation(700, 250);
+        numpad[6].setSize(75, 75);
         numpad[6].addActionListener(e -> {
             RP_number.setText(RP_number.getText()+"6");
         });
 
-        numpad[7].setLocation(30, 17);
-        numpad[7].setSize(180, 180);
+        numpad[7].setLocation(550, 175);
+        numpad[7].setSize(75, 75);
         numpad[7].addActionListener(e -> {
             RP_number.setText(RP_number.getText()+"7");
         });
 
-        numpad[8].setLocation(30, 17);
-        numpad[8].setSize(180, 180);
+        numpad[8].setLocation(625, 175);
+        numpad[8].setSize(75, 75);
         numpad[8].addActionListener(e -> {
             RP_number.setText(RP_number.getText()+"8");
         });
 
-        numpad[9].setLocation(30, 17);
-        numpad[9].setSize(180, 180);
+        numpad[9].setLocation(700, 175);
+        numpad[9].setSize(75, 75);
         numpad[9].addActionListener(e -> {
             RP_number.setText(RP_number.getText()+"9");
         });
@@ -613,10 +623,11 @@ public class MAIN_GUI extends JFrame {
             Menu_unvisible();
             use_shower.setVisible(true);
             use_wm.setVisible(true);
+            menu_text.setText("사용 여부");
         });
 
-        use_wm.setLocation(30, 17);
-        use_wm.setSize(180, 180);
+        use_wm.setLocation(80, 114);
+        use_wm.setSize(300, 300);
         use_wm.setBorderPainted(false);
         use_wm.setContentAreaFilled(false);
         use_wm.setFocusPainted(false);
@@ -682,41 +693,48 @@ public class MAIN_GUI extends JFrame {
             }.start();
         });
 
-        wm_1.setLocation(100, 15);
-        wm_1.setSize(180, 180);
+        wm_1.setLocation(80, 60);
+        wm_1.setSize(600, 100);
         wm_1.setVisible(false);
+        wm_1.setForeground(Color.white);
+        wm_1.setFont(wm_1.getFont().deriveFont(Font.BOLD, 50f));
 
-        wm_2.setLocation(130, 50);
-        wm_2.setSize(180, 180);
+        wm_2.setLocation(530, 60);
+        wm_2.setSize(600, 100);
         wm_2.setVisible(false);
+        wm_2.setForeground(Color.white);
+        wm_2.setFont(wm_2.getFont().deriveFont(Font.BOLD, 50f));
 
-        wm_3.setLocation(160, 100);
-        wm_3.setSize(180, 180);
+        wm_3.setLocation(80, 400);
+        wm_3.setSize(600, 100);
         wm_3.setVisible(false);
+        wm_3.setForeground(Color.white);
+        wm_3.setFont(wm_3.getFont().deriveFont(Font.BOLD, 50f));
 
-        wm_4.setLocation(190, 150);
-        wm_4.setSize(180, 180);
+        wm_4.setLocation(530, 400);
+        wm_4.setSize(600, 100);
         wm_4.setVisible(false);
+        wm_4.setForeground(Color.white);
+        wm_4.setFont(wm_4.getFont().deriveFont(Font.BOLD, 50f));
 
-        wm_image1.setLocation(190, 150);
-        wm_image1.setSize(180, 180);
+        wm_image1.setLocation(120, 140);
+        wm_image1.setSize(120, 120);
         wm_image1.setVisible(false);
 
-        wm_image2.setLocation(250, 150);
-        wm_image2.setSize(180, 180);
+        wm_image2.setLocation(570, 140);
+        wm_image2.setSize(120, 120);
         wm_image2.setVisible(false);
 
-        wm_image3.setLocation(300, 150);
-        wm_image3.setSize(180, 180);
+        wm_image3.setLocation(120, 300);
+        wm_image3.setSize(120, 120);
         wm_image3.setVisible(false);
 
-        wm_image4.setLocation(350, 150);
-        wm_image4.setSize(180, 180);
+        wm_image4.setLocation(570, 300);
+        wm_image4.setSize(120, 120);
         wm_image4.setVisible(false);
 
-
-        use_shower.setLocation(200, 17);
-        use_shower.setSize(180, 180);
+        use_shower.setLocation(400, 120);
+        use_shower.setSize(300, 300);
         use_shower.setBorderPainted(false);
         use_shower.setContentAreaFilled(false);
         use_shower.setFocusPainted(false);
@@ -780,20 +798,24 @@ public class MAIN_GUI extends JFrame {
 
         });
 
-        shower_1.setLocation(100, 15);
-        shower_1.setSize(180, 180);
+        shower_1.setLocation(110, 330);
+        shower_1.setSize(600, 100);
         shower_1.setVisible(false);
+        shower_1.setForeground(Color.white);
+        shower_1.setFont(shower_1.getFont().deriveFont(Font.BOLD, 50f));
 
-        shower_2.setLocation(100, 40);
-        shower_2.setSize(180, 180);
+        shower_2.setLocation(500, 330);
+        shower_2.setSize(600, 100);
         shower_2.setVisible(false);
+        shower_2.setForeground(Color.white);
+        shower_2.setFont(shower_2.getFont().deriveFont(Font.BOLD, 50f));
 
-        shower_image1.setLocation(0, 0);
-        shower_image1.setSize(180, 180);
+        shower_image1.setLocation(30, 100);
+        shower_image1.setSize(250, 250);
         shower_image1.setVisible(false);
 
-        shower_image2.setLocation(100, 0);
-        shower_image2.setSize(180, 180);
+        shower_image2.setLocation(500, 100);
+        shower_image2.setSize(250, 250);
         shower_image2.setVisible(false);
 
         /*기숙사 규칙 버튼*/
@@ -821,8 +843,8 @@ public class MAIN_GUI extends JFrame {
             }.start();
         });
 
-        rule_scroll.setLocation(600, 17);
-        rule_scroll.setSize(180, 180);
+        rule_scroll.setLocation(0, 0);
+        rule_scroll.setSize(800, 480);
         rule_scroll.setVisible(false);
         rule_scroll.setOpaque(true);
         rule_txt.setOpaque(true);
@@ -901,10 +923,10 @@ public class MAIN_GUI extends JFrame {
         food_dinner.setVisible(false);
         menu_text.setVisible(false);
         menu_RP_button.setVisible(false);
-        RP_result.setVisible(true);
-        RP_del.setVisible(true);
-        RP_enter.setVisible(true);
-        RP_number.setVisible(true);
+        RP_result.setVisible(false);
+        RP_del.setVisible(false);
+        RP_enter.setVisible(false);
+        RP_number.setVisible(false);
         for (int i = 0; i < 10; i ++)
             numpad[i].setVisible(false);
         menu_rule_button.setVisible(false);

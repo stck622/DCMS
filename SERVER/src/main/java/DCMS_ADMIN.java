@@ -3,6 +3,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.sql.*;
 
 public class DCMS_ADMIN extends Thread { // 포트 8002
     int getnum(byte data[], int num) {
@@ -14,7 +15,7 @@ public class DCMS_ADMIN extends Thread { // 포트 8002
     public void run() {
         super.run();
         try {
-            ServerSocket server1 = new ServerSocket(8001);
+            ServerSocket server1 = new ServerSocket(8002);
 
 
             while (true) {
@@ -35,24 +36,43 @@ public class DCMS_ADMIN extends Thread { // 포트 8002
                             DATA.notice[1] = notice;
                             break;
                         case 2:
-                            input1.read();
                             DATA.notice[2] = notice;
                             break;
                         case 3:
-                            input1.read();
                             DATA.notice[3] = notice;
-                            break;
-                        case 4:
-                            input1.read();
-                            DATA.notice[4] = notice;
-                            break;
-                        case 5:
-                            input1.read();
-                            DATA.notice[5] = notice;
                             break;
                     }
                 } else if (data[0] == '2') {                            //전체소등
 
+                } else if (data[0] == '3') {                             //벌점부여
+                    Connection con = null;
+                    Statement sta = null;
+                    try {
+                        Class.forName("com.mysql.cj.jdbc.Driver");
+
+                        con = DriverManager.getConnection("jdbc:mysql://10.80.162.66:3306/dcms_db?serverTimezone=UTC", "test2", "1234");
+                        sta = con.createStatement();
+
+                        PreparedStatement pstmt = con.prepareStatement("select * from topic where id = " + new String(data).substring(1, 5) + ";");
+                        ResultSet rs = pstmt.executeQuery();
+                        while (rs.next()) {
+                            int result = Integer.parseInt(rs.getString(4)) + getnum(data, 5);
+                            StringBuilder sb = new StringBuilder();
+                            String str1 = sb.append("update topic set Demerit = " + "'"+result +"'" + "where ID = " + new String(data).substring(1, 5) + ";").toString();
+                            sta.executeUpdate(str1);
+                        }
+                    } catch (SQLException ex) {
+                        System.out.println("SQLException:" + ex);
+                    } catch (Exception ex) {
+                        System.out.println("Exception:" + ex);
+                    } finally {
+                        try {
+                            if (con != null) {
+                                con.close();
+                            }
+                        } catch (Exception e) {
+                        }
+                    }
                 }
             }
         } catch (IOException e) {
