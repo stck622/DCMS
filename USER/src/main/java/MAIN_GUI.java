@@ -78,7 +78,7 @@ public class MAIN_GUI extends JFrame {
         setVisible(true);
 
         String path = "/home/pi/Desktop/New/";
-        path = "C:\\Users\\Jin\\Documents\\DCMS\\USER\\src\\Media\\";
+        path = "C:\\Users\\user\\Documents\\DCMS\\USER\\src\\Media\\";
         mask = new JLabel();
         clock_text = new JLabel("PM 12:00");
         background_image = new JLabel((ImageIcon) Add_image(path + "background.jpg", 800, 480));
@@ -496,6 +496,7 @@ public class MAIN_GUI extends JFrame {
             RP_enter.setVisible(true);
             RP_del.setVisible(true);
             RP_result.setVisible(true);
+            RP_number.setVisible(true);
         });
 
         RP_enter.setLocation(200,15);
