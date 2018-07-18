@@ -27,6 +27,9 @@ public class MAIN_GUI extends JFrame {
     JButton menu_open_button;
     JButton menu_date_button;
     JButton menu_food_button;
+    JLabel morning;
+    JLabel lunch;
+    JLabel dinner;
     JLabel food_morning;
     JLabel food_lunch;
     JLabel food_dinner;
@@ -59,7 +62,6 @@ public class MAIN_GUI extends JFrame {
     JButton down_button;
     JLabel floor;
 
-
     public MAIN_GUI(String ip) {
 
 
@@ -78,21 +80,24 @@ public class MAIN_GUI extends JFrame {
         setVisible(true);
 
         String path = "/home/pi/Desktop/New/";
-        path = "C:\\Users\\user\\Documents\\DCMS\\USER\\src\\Media\\";
+        path = "C:\\Users\\Jin\\Documents\\DCMS\\USER\\src\\Media\\";
         mask = new JLabel();
         clock_text = new JLabel("PM 12:00");
         background_image = new JLabel((ImageIcon) Add_image(path + "background.jpg", 800, 480));
         menu_cancel_button = new JButton(((ImageIcon) Add_image(path + "cacel_button.png", 30, 30)));
         menu_open_button = new JButton(((ImageIcon) Add_image(path + "menu_button.png", 100, 100)));
         menu_notice_button = new JButton(((ImageIcon) Add_image(path + "notice_button.png", 180, 180)));
-        notice_1 = new JLabel("null");
-        notice_2 = new JLabel("null");
-        notice_3 = new JLabel("null");
+        notice_1 = new JLabel("불러오는중...");
+        notice_2 = new JLabel("불러오는중...");
+        notice_3 = new JLabel("불러오는중...");
         menu_date_button = new JButton(((ImageIcon) Add_image(path + "date_button.png", 180, 180)));
         menu_food_button = new JButton(((ImageIcon) Add_image(path + "food_button.png", 180, 180)));
-        food_morning = new JLabel("null");
-        food_lunch = new JLabel("null");
-        food_dinner = new JLabel("null");
+        morning = new JLabel("조식");
+        lunch = new JLabel("중식");
+        dinner = new JLabel("석식");
+        food_morning = new JLabel("불러오는중...");
+        food_lunch = new JLabel("불러오는중...");
+        food_dinner = new JLabel("불러오는중...");
         menu_RP_button = new JButton(((ImageIcon) Add_image(path + "RP_button.png", 180, 180)));
         RP_number = new JLabel("");
         RP_del = new JButton("<--");
@@ -406,6 +411,9 @@ public class MAIN_GUI extends JFrame {
             menu_text.setVisible(true);
             menu_text.setLocation(270, -10);
             menu_text.setText("오늘의 급식");
+            morning.setVisible(true);
+            lunch.setVisible(true);
+            dinner.setVisible(true);
             food_morning.setVisible(true);
             food_lunch.setVisible(true);
             food_dinner.setVisible(true);
@@ -462,23 +470,40 @@ public class MAIN_GUI extends JFrame {
                 }
             }.start();
         });
+        morning.setLocation(0,60);
+        morning.setSize(600,100);
+        morning.setForeground(Color.white);
+        morning.setFont(morning.getFont().deriveFont(Font.BOLD,30f));
+        morning.setVisible(false);
 
-        food_morning.setLocation(170, 0);
+        lunch.setLocation(250,60);
+        lunch.setSize(600,100);
+        lunch.setForeground(Color.white);
+        lunch.setFont(morning.getFont().deriveFont(Font.BOLD,30f));
+        lunch.setVisible(false);
+
+        dinner.setLocation(500,60);
+        dinner.setSize(600,100);
+        dinner.setForeground(Color.white);
+        dinner.setFont(morning.getFont().deriveFont(Font.BOLD,30f));
+        dinner.setVisible(false);
+
+        food_morning.setLocation(0, 0);
         food_morning.setSize(300, 500);
         food_morning.setForeground(Color.white);
-        food_morning.setFont(food_morning.getFont().deriveFont(Font.BOLD, 15f));
+        food_morning.setFont(food_morning.getFont().deriveFont(Font.BOLD, 25f));
         food_morning.setVisible(false);
 
-        food_lunch.setLocation(370, 0);
+        food_lunch.setLocation(250, 0);
         food_lunch.setSize(300, 500);
         food_lunch.setForeground(Color.white);
-        food_lunch.setFont(food_lunch.getFont().deriveFont(Font.BOLD, 15f));
+        food_lunch.setFont(food_lunch.getFont().deriveFont(Font.BOLD, 25f));
         food_lunch.setVisible(false);
 
-        food_dinner.setLocation(570, 0);
+        food_dinner.setLocation(500, 0);
         food_dinner.setSize(300, 500);
         food_dinner.setForeground(Color.white);
-        food_dinner.setFont(food_dinner.getFont().deriveFont(Font.BOLD, 15f));
+        food_dinner.setFont(food_dinner.getFont().deriveFont(Font.BOLD, 25f));
         food_dinner.setVisible(false);
 
 
@@ -499,8 +524,8 @@ public class MAIN_GUI extends JFrame {
             RP_number.setVisible(true);
         });
 
-        RP_enter.setLocation(200,15);
-        RP_enter.setSize(100,100);
+        RP_enter.setLocation(700,400);
+        RP_enter.setSize(75,75);
         RP_enter.setVisible(false);
         RP_enter.addActionListener(e -> {
             menu_text.setText("벌점 조회");
@@ -517,7 +542,7 @@ public class MAIN_GUI extends JFrame {
                         PreparedStatement pstmt = con.prepareStatement("select * from topic where id = '1305';");
                         ResultSet rs = pstmt.executeQuery();
                         while(rs.next())
-                            RP_result.setText(rs.getString(4));
+                            RP_result.setText(rs.getString(4)+"점입니다.");
                     }
                     catch(SQLException ex){
                         System.out.println("SQLException:"+ex);
@@ -534,22 +559,27 @@ public class MAIN_GUI extends JFrame {
             }.start();
         });
 
-        RP_del.setLocation(300,15);
-        RP_del.setSize(100,100);
+        RP_del.setLocation(625,400);
+        RP_del.setSize(75,75);
         RP_del.setVisible(false);
         RP_del.addActionListener(e -> {
             RP_number.setText(RP_number.getText().substring(0,RP_number.getText().length()-1));
         });
 
-        RP_number.setLocation(100, 15);
-        RP_number.setSize(180, 180);
+        RP_number.setLocation(100, 150);
+        RP_number.setSize(600, 100);
         RP_number.setVisible(false);
+        RP_number.setForeground(Color.white);
+        RP_number.setFont(RP_number.getFont().deriveFont(Font.BOLD, 50f));
 
-        RP_result.setLocation(200,15);
-        RP_result.setSize(100,100);
+        RP_result.setLocation(0,0);
+        RP_result.setSize(600,100);
+        RP_result.setVisible(false);
+        RP_result.setForeground(Color.white);
+        RP_result.setFont(RP_result.getFont().deriveFont(Font.BOLD, 50f));
 
         numpad[0].setLocation(550, 400);
-        numpad[0].setSize(150, 75);
+        numpad[0].setSize(75, 75);
         numpad[0].addActionListener(e  -> {
             RP_number.setText(RP_number.getText()+"0");
         });
@@ -859,12 +889,18 @@ public class MAIN_GUI extends JFrame {
         container.add(notice_3);
         container.add(menu_date_button);
         container.add(menu_food_button);
+        container.add(morning);
+        container.add(lunch);
+        container.add(dinner);
         container.add(food_morning);
         container.add(food_lunch);
         container.add(food_dinner);
         container.add(menu_open_button);
         container.add(menu_RP_button);
         container.add(RP_number);
+        container.add(RP_result);
+        container.add(RP_enter);
+        container.add(RP_del);
         for(int i = 0; i < 10; i ++)
             container.add(numpad[i]);
         container.add(menu_use_button);
