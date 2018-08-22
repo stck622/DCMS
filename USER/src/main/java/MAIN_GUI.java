@@ -68,8 +68,8 @@ public class MAIN_GUI extends JFrame {
         /*전체 화면*/
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         GraphicsDevice gd = ge.getDefaultScreenDevice();
-        setUndecorated(true);
-        gd.setFullScreenWindow(this);
+        //setUndecorated(true);
+        //gd.setFullScreenWindow(this);
 
 
         /*컨테이너 기본 설정*/
@@ -80,7 +80,7 @@ public class MAIN_GUI extends JFrame {
         setVisible(true);
 
         String path = "/home/pi/Desktop/New/";
-        path = "C:\\Users\\Jin\\Documents\\DCMS\\USER\\src\\Media\\";
+        path = "C:\\Users\\stck6\\Documents\\DCMS\\USER\\src\\Media\\";
         mask = new JLabel();
         clock_text = new JLabel("PM 12:00");
         background_image = new JLabel((ImageIcon) Add_image(path + "background.jpg", 800, 480));
@@ -337,25 +337,25 @@ public class MAIN_GUI extends JFrame {
                         InputStream inputStream = socket.getInputStream();
                         OutputStream outputStream = socket.getOutputStream();
 
-                        byte data[] = new byte[300];
+                        byte data[][] = new byte[3][300];
 
                         outputStream.write(String.valueOf(menu_info).getBytes());
 
-                        inputStream.read(data);
+                        inputStream.read(data[0]);
 
-                        notice_1.setText(new String(data).trim());
-
-                        outputStream.write("1".getBytes());
-
-                        inputStream.read(data);
-
-                        notice_2.setText(new String(data).trim());
+                        notice_1.setText(new String(data[0]).trim());
 
                         outputStream.write("1".getBytes());
 
-                        inputStream.read(data);
+                        inputStream.read(data[1]);
 
-                        notice_3.setText(new String(data).trim());
+                        notice_2.setText(new String(data[1]).trim());
+
+                        outputStream.write("1".getBytes());
+
+                        inputStream.read(data[2]);
+
+                        notice_3.setText(new String(data[2]).trim());
 
                         outputStream.write("1".getBytes());
 
@@ -372,19 +372,19 @@ public class MAIN_GUI extends JFrame {
         });
 
         notice_1.setLocation(10, 45);
-        notice_1.setSize(230, 180);
+        notice_1.setSize(230, 300);
         notice_1.setVisible(false);
         notice_1.setForeground(Color.white);
         notice_1.setFont(notice_1.getFont().deriveFont(Font.BOLD, 30f));
 
         notice_2.setLocation(10, 155);
-        notice_2.setSize(230, 180);
+        notice_2.setSize(230, 300);
         notice_2.setVisible(false);
         notice_2.setForeground(Color.white);
         notice_2.setFont(notice_2.getFont().deriveFont(Font.BOLD, 30f));
 
         notice_3.setLocation(10, 265);
-        notice_3.setSize(230, 180);
+        notice_3.setSize(230, 300);
         notice_3.setVisible(false);
         notice_3.setForeground(Color.white);
         notice_3.setFont(notice_3.getFont().deriveFont(Font.BOLD, 30f));
@@ -536,10 +536,10 @@ public class MAIN_GUI extends JFrame {
                     Statement sta = null;
                     super.run();
                     try{
-                        Class.forName("com.mysql.jdbc.Driver");
-                        con= DriverManager.getConnection("jdbc:mysql://10.80.162.66:3306/dcms_db?serverTimezone=UTC","test2","1234");
+                        Class.forName("com.mysql.cj.jdbc.Driver");
+                        con= DriverManager.getConnection("jdbc:mysql://192.168.0.16:3306/dcms_db?serverTimezone=UTC","test2","1234");
                         sta = con.createStatement();
-                        PreparedStatement pstmt = con.prepareStatement("select * from topic where id = '1305';");
+                        PreparedStatement pstmt = con.prepareStatement("select * from topic where id = '"+ RP_number.getText()+"';");
                         ResultSet rs = pstmt.executeQuery();
                         while(rs.next())
                             RP_result.setText(rs.getString(4)+"점입니다.");
@@ -983,6 +983,9 @@ public class MAIN_GUI extends JFrame {
         wm_image2.setVisible(false);
         wm_image3.setVisible(false);
         wm_image4.setVisible(false);
+        morning.setVisible(false);
+        lunch.setVisible(false);
+        dinner.setVisible(false);
     }
 
     public Object Add_image(String image, int width, int height) { //이미지 등록 메소드 (경로, 폭, 높이)

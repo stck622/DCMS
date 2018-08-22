@@ -74,11 +74,13 @@
         </LinearLayout>
 
         <Button
+            android:id="@+id/aa"
             android:layout_marginTop="90dp"
             android:layout_marginLeft="40dp"
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:text="일괄소등"/>
+            android:text="일괄소등"
+            android:onClick="onClick12"/>
 
 
 

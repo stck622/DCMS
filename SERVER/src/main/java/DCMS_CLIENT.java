@@ -26,11 +26,13 @@ public class DCMS_CLIENT extends Thread { // 포트 8000
 
                 System.out.println(new String(data));
 
-                if (data[0] == '1')
+                if (data[0] == '1') {               //세탁기
                     DATA.wm[getnum(data, 1) - 1][getnum(data, 2) - 1] = getnum(data, 3);
-                else if (data[0] == '2')
+                    System.out.println(DATA.wm[getnum(data, 1) - 1][getnum(data, 2) - 1]);
+                }
+                else if (data[0] == '2') {          //샤워실
                     DATA.sh[getnum(data, 1) - 1][getnum(data, 2) - 1] = getnum(data, 3);
-
+                }
             }
 
 
